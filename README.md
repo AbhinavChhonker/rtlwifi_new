@@ -6,52 +6,67 @@ This code will build on any kernel 4.19 and newer as long as the distro has not 
 any of the kernel APIs. IF YOU RUN UBUNTU, YOU CAN BE ASSURED THAT THE APIs HAVE CHANGED.
 NO, I WILL NOT MODIFY THE SOURCE FOR YOU. YOU ARE ON YOUR OWN!!!!!
 
-It includes drivers for the following cards:
+This repository includes drivers for the following cards:
 
 RTL8822BE, RTL8822CE, RTL8821CE, and RTL8723DE.
 
-#### Installation instruction
-
+### Installation instruction
+##### Requirements
 You will need to install "make", "gcc", "kernel headers", "kernel build essentials", and "git".
+You can install them with the following command, on **Ubuntu**:
+```bash
+sudo apt-get update
+sudo apt-get install make gcc linux-headers-$(uname -r) build-essentials git
+```
+If any of the packets above are not found check if your distro installs them like that. 
 
+##### Installation
 For all distros:
+```bash
 git clone https://github.com/lwfinger/rtlwifi_new.git -b rtw88
 cd rtlwifi_new
 make
 sudo make install
-
-Some distros provide RTL8723DE drivers. To use this driver, that one MUST be
+```
+##### Blacklisting (needed if you want to use these modules)
+Some distros provide `RTL8723DE` drivers. To use this driver, that one MUST be
 blacklisted. How to do that is left as an exercise as learning that will be very beneficial.
 
 If your system has ANY conflicting drivers installed, you must blacklist them as well. For kernels
 5.6 and newer, this will include drivers such as rtw88_xxxx.
+Here is a useful [link](https://askubuntu.com/questions/110341/how-to-blacklist-kernel-modules) on how to blacklist a module
 
-Once you have reached this point, then reboot. Use the command lsmod and check for any
-conflicting drivers. The correct ones are
+Once you have reached this point, then reboot. Use the command `lsmod` and check if there are any
+conflicting drivers. The correct ones are:
+- `rtw_8723de  rtw_8723d  rtw_8822be  rtw_8822b  rtw_8822ce  rtw_8822c  rtw_core  and rtw_pci`
 
-rtw_8723de  rtw_8723d  rtw_8822be  rtw_8822b  rtw_8822ce  rtw_8822c  rtw_core  and rtw_pci
+If you have other modules installed, see if you blacklisted them correctly.
 
-Any others WILL interfere!
+##### How to disable/enable a Kernel module
+ ```bash
+sudo modprobe -r rtw_8723de         #This disable the module
+sudo modprobe rtw_8723de            #This enables the module, you can add options like ant_sel=2
+```
 
-### Example for detecting wifi for rtw_8723de(It is no longer rtl8723de)
-* sudo modprobe -r rtw_8723de.
-* sudo modprobe rtw_8723de.
-
-#### Option configuration
+##### Option configuration
 If it turns out that your system needs one of the configuration options, then do the following:
-
+```bash
 sudo nano /etc/modprobe.d/<dev_name>.conf 
-
+```
 There, enter the line below:
-options <dev_name> <<driver_option_name>>=<value>`
+```bash
+options <device_name> <<driver_option_name>>=<value>
+```
 
 ***********************************************************************************************
 
 When your kernel changes, then you need to do the following:
+```bash
 cd ~/rtlwifi_new
 git pull
 make
 sudo make install
+```
 
 Remember, this MUST be done whenever you get a new kernel - no exceptions.
 
