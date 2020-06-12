@@ -33,6 +33,10 @@ rtw_8723de  rtw_8723d  rtw_8822be  rtw_8822b  rtw_8822ce  rtw_8822c  rtw_core  a
 
 Any others WILL interfere!
 
+### Example for detecting wifi for rtw_8723de(It is no longer rtl8723de)
+* sudo modprobe -r rtw_8723de.
+* sudo modprobe rtw_8723de.
+
 #### Option configuration
 If it turns out that your system needs one of the configuration options, then do the following:
 
