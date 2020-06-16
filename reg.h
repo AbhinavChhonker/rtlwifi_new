@@ -480,8 +480,6 @@
 
 #define REG_CCK0_FAREPORT	0xa2c
 
-#define REG_CCK0_FAREPORT	0xa2c
-
 #define REG_DIS_DPD		0x0a70
 #define DIS_DPD_MASK		GENMASK(9, 0)
 #define DIS_DPD_RATE6M		BIT(0)

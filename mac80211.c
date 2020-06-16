@@ -685,6 +685,7 @@ static void rtw_ops_mgd_prepare_tx(struct ieee80211_hw *hw,
 	mutex_lock(&rtwdev->mutex);
 	rtw_leave_lps_deep(rtwdev);
 	rtw_coex_connect_notify(rtwdev, COEX_ASSOCIATE_START);
+	rtw_chip_prepare_tx(rtwdev);
 	mutex_unlock(&rtwdev->mutex);
 }
 
