@@ -1220,6 +1220,9 @@ struct rtw_chip_info {
 	/* for 8821c set channel */
 	u32 ch_param[3];
 
+	/* for 8821c set channel */
+	u32 ch_param[3];
+
 	/* coex paras */
 	u32 coex_para_ver;
 	u8 bt_desired_ver;
