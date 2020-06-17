@@ -1023,6 +1023,29 @@ static struct rtw_prioq_addrs prioq_addrs_8821c = {
 	.wsize = true,
 };
 
+static void rtw8821c_dummy(struct rtw_dev *rtwdev)
+{
+}
+
+static void rtw8821c_bf_config_bfee(struct rtw_dev *rtwdev,
+				       struct rtw_vif *vif,
+				       struct rtw_bfee *bfee, bool enable)
+{
+}
+
+static void rtw8821c_coex_cfg_ant_switch(struct rtw_dev *rtwdev,
+					 u8 ctrl_type, u8 pos_type)
+{
+}
+
+static void rtw8821c_coex_cfg_wl_tx_power(struct rtw_dev *rtwdev, u8 wl_pwr)
+{
+}
+
+static void rtw8821c_coex_cfg_wl_rx_gain(struct rtw_dev *rtwdev, bool low_gain)
+{
+}
+
 static struct rtw_chip_ops rtw8821c_ops = {
 	.phy_set_param		= rtw8821c_phy_set_param,
 	.read_efuse		= rtw8821c_read_efuse,
@@ -1036,6 +1059,18 @@ static struct rtw_chip_ops rtw8821c_ops = {
 	.cfg_ldo25		= rtw8821c_cfg_ldo25,
 	.false_alarm_statistics	= rtw8821c_false_alarm_statistics,
 	.phy_calibration	= rtw8821c_phy_calibration,
+	.pwr_track		= rtw8821c_dummy,
+	.config_bfee		= rtw8821c_bf_config_bfee,
+	.set_gid_table		= rtw_bf_set_gid_table,
+	.cfg_csi_rate		= rtw_bf_cfg_csi_rate,
+
+	.coex_set_init		= rtw8821c_dummy,
+	.coex_set_ant_switch	= rtw8821c_coex_cfg_ant_switch,
+	.coex_set_gnt_fix	= rtw8821c_dummy,
+	.coex_set_gnt_debug	= rtw8821c_dummy,
+	.coex_set_rfe_type	= rtw8821c_dummy,
+	.coex_set_wl_tx_power	= rtw8821c_coex_cfg_wl_tx_power,
+	.coex_set_wl_rx_gain	= rtw8821c_coex_cfg_wl_rx_gain,
 };
 
 struct rtw_chip_info rtw8821c_hw_spec = {
