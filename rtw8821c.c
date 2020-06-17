@@ -1073,6 +1073,9 @@ static struct rtw_chip_ops rtw8821c_ops = {
 	.coex_set_wl_rx_gain	= rtw8821c_coex_cfg_wl_rx_gain,
 };
 
+/* rssi in percentage % (dbm = % - 100) */
+static const u8 wl_rssi_step_8821c[] = {60, 50, 44, 30};
+
 struct rtw_chip_info rtw8821c_hw_spec = {
 	.ops = &rtw8821c_ops,
 	.id = RTW_CHIP_TYPE_8821C,
@@ -1105,6 +1108,7 @@ struct rtw_chip_info rtw8821c_hw_spec = {
 	.prioq_addrs = &prioq_addrs_8821c,
 	.intf_table = &phy_para_table_8821c,
 	.dig = rtw8821c_dig,
+	.dig_cck = NULL,
 	.rf_base_addr = {0x2800, 0x2c00},
 	.rf_sipi_addr = {0xc90, 0xe90},
 	.ltecoex_addr = &rtw8821c_ltecoex_addr,
@@ -1115,6 +1119,8 @@ struct rtw_chip_info rtw8821c_hw_spec = {
 	.rfe_defs = rtw8821c_rfe_defs,
 	.rfe_defs_size = ARRAY_SIZE(rtw8821c_rfe_defs),
 	.rx_ldpc = false,
+
+	.wl_rssi_step = wl_rssi_step_8821c,
 };
 EXPORT_SYMBOL(rtw8821c_hw_spec);
 
