@@ -1210,6 +1210,25 @@ static const struct coex_tdma_para tdma_nsant_8821c[] = {
 	{ {0x51, 0x10, 0x03, 0x10, 0x50} }  /* case-120 */
 };
 
+/* wl_tx_dec_power, bt_tx_dec_power, wl_rx_gain, bt_rx_lna_constrain */
+static const struct coex_rf_para rf_para_tx_8821c[] = {
+	{0, 0, false, 7},  /* for normal */
+	{0, 10, false, 7}, /* for WL-CPT */
+	{1, 0, true, 4},
+	{1, 2, true, 4},
+	{1, 10, true, 4},
+	{1, 15, true, 4}
+};
+
+static const struct coex_rf_para rf_para_rx_8821c[] = {
+	{0, 0, false, 7},  /* for normal */
+	{0, 10, false, 7}, /* for WL-CPT */
+	{1, 0, true, 5},
+	{1, 2, true, 5},
+	{1, 10, true, 5},
+	{1, 15, true, 5}
+};
+
 /* rssi in percentage % (dbm = % - 100) */
 static const u8 wl_rssi_step_8821c[] = {60, 50, 44, 30};
 static const u8 bt_rssi_step_8821c[] = {30, 30, 30, 30};
@@ -1260,6 +1279,8 @@ struct rtw_chip_info rtw8821c_hw_spec = {
 
 	.wl_rssi_step = wl_rssi_step_8821c,
 	.bt_rssi_step = bt_rssi_step_8821c,
+	.wl_rf_para_tx = rf_para_tx_8821c,
+	.wl_rf_para_rx = rf_para_rx_8821c,
 	.table_sant_num = ARRAY_SIZE(table_sant_8821c),
 	.table_sant = table_sant_8821c,
 	.table_nsant_num = ARRAY_SIZE(table_nsant_8821c),
