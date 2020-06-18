@@ -1137,24 +1137,10 @@ static u8 rtw_coex_algorithm(struct rtw_dev *rtwdev)
 
 static void rtw_coex_action_coex_all_off(struct rtw_dev *rtwdev)
 {
-	struct rtw_efuse *efuse;
-	struct rtw_chip_info *chip;
+	struct rtw_efuse *efuse = &rtwdev->efuse;
+	struct rtw_chip_info *chip = rtwdev->chip;
 	u8 table_case, tdma_case;
 
-	if (!rtwdev) {
-		pr_info("***** rtwdev is NULL\n");
-		return;
-	}
-	efuse = &rtwdev->efuse;
-	if (!efuse) {
-		pr_info("***** efuse is NULL\n");
-		return;
-	}
-	chip = rtwdev->chip;
-	if (!chip) {
-		pr_info("***** chip is NULL\n");
-		return;
-	}
 	if (efuse->share_ant) {
 		/* Shared-Ant */
 		table_case = 2;
