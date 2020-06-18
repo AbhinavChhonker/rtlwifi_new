@@ -2091,9 +2091,12 @@ void rtw_coex_init_hw_config(struct rtw_dev *rtwdev, bool wifi_only)
 void rtw_coex_ips_notify(struct rtw_dev *rtwdev, u8 type)
 {
 	struct rtw_coex *coex = &rtwdev->coex;
-	struct rtw_coex_stat *coex_stat = &coex->stat;
+	struct rtw_coex_stat *coex_stat;
 
-	if (coex->stop_dm)
+	if (!coex || coex->stop_dm)
+		return;
+	coex_stat = &coex->stat;
+	if (!coex_stat)
 		return;
 
 	if (type == COEX_IPS_ENTER) {
