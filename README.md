@@ -16,7 +16,7 @@ You will need to install "make", "gcc", "kernel headers", "kernel build essentia
 You can install them with the following command, on **Ubuntu**:
 ```bash
 sudo apt-get update
-sudo apt-get install make gcc linux-headers-$(uname -r) build-essentials git
+sudo apt-get install make gcc linux-headers-$(uname -r) build-essential git
 ```
 If any of the packets above are not found check if your distro installs them like that. 
 
